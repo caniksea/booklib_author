@@ -15,7 +15,7 @@ public class PlaygroundTest {
 
     /**
      * Tasks:
-     *  > Replace the throw exception with an implementation of the test case for getBookAuthorsLastName(). (3.625 marks)
+     *  > Replace the throw exception with an implementation of the test case for getBookAuthorsLastName(). (7.625 marks)
      *
      */
     @Test
@@ -25,7 +25,7 @@ public class PlaygroundTest {
 
     /**
      * Tasks:
-     *  > Replace the throw exception with an implementation of the test case for getBookTitlesByAuthorforYear(). (3.625 marks)
+     *  > Replace the throw exception with an implementation of the test case for getBookTitlesByAuthorforYear(). (6.625 marks)
      *
      */
     @Test

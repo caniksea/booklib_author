@@ -14,7 +14,7 @@ public class Playground {
     /**
      * Tasks:
      *  > Replace the throw exception with an implementation that returns lastname of all authors
-     *      of a given book. (10 marks)
+     *      of a given book. (6 marks)
      *
      * @param bookId
      * @return
@@ -26,7 +26,7 @@ public class Playground {
     /**
      * Tasks:
      *  > Replace the throw exception with an implementation that returns the title of all books
-     *      of a given author in a given year. (10 marks)
+     *      of a given author in a given year. (7 marks)
      *
      * @param authorId
      * @param year

@@ -23,17 +23,21 @@ public class AuthorServiceImplTest {
 
     @Test
     public void create() {
+        throw new UnsupportedOperationException();
     }
 
     @Test
     public void update() {
+        throw new UnsupportedOperationException();
     }
 
     @Test
     public void read() {
+        throw new UnsupportedOperationException();
     }
 
     @Test
     public void delete() {
+        throw new UnsupportedOperationException();
     }
 }

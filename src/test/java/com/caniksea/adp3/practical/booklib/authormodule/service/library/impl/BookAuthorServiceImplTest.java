@@ -25,13 +25,16 @@ public class BookAuthorServiceImplTest {
 
     @Test
     public void create() {
+        throw new UnsupportedOperationException();
     }
 
     @Test
     public void read() {
+        throw new UnsupportedOperationException();
     }
 
     @Test
     public void delete() {
+        throw new UnsupportedOperationException();
     }
 }
