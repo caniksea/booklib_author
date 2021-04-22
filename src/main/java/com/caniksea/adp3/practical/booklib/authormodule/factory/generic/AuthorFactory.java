@@ -2,6 +2,8 @@ package com.caniksea.adp3.practical.booklib.authormodule.factory.generic;
 
 import com.caniksea.adp3.practical.booklib.authormodule.domain.generic.Author;
 
+import java.util.UUID;
+
 public class AuthorFactory {
 
     /**
@@ -17,6 +19,11 @@ public class AuthorFactory {
      * @return
      */
     public static Author buildAuthor(String firstName, String lastName) { // DO NOT MODIFY THIS LINE
-        throw new UnsupportedOperationException();
+        if ((lastName == null || lastName.isEmpty()))
+            return null;
+        String id = UUID.randomUUID().toString();
+        Author author = new Author.Builder().firstName(firstName)
+                .lastName(lastName).id(id).build();
+        return author;
     }
 }

@@ -1,5 +1,6 @@
 package com.caniksea.adp3.practical.booklib.authormodule.factory.generic;
 
+import com.caniksea.adp3.practical.booklib.authormodule.domain.generic.Author;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -18,6 +19,10 @@ public class AuthorFactoryTest {
      */
     @Test
     public void buildAuthor() {
-        throw new UnsupportedOperationException();
+        Author author = AuthorFactory.buildAuthor("", "Magaji");
+        System.out.println(author);
+        Author newAuthor = new Author.Builder().copy(author).firstName("Nilo").build();
+        System.out.println(newAuthor);
+        assertNotNull(author);
     }
 }
