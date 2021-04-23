@@ -19,10 +19,9 @@ public class AuthorFactoryTest {
      */
     @Test
     public void buildAuthor() {
-        Author author = AuthorFactory.buildAuthor("", "Magaji");
-        System.out.println(author);
-        Author newAuthor = new Author.Builder().copy(author).firstName("Nilo").build();
-        System.out.println(newAuthor);
+        Author author = AuthorFactory.buildAuthor("Arendse", "Jaanties");
         assertNotNull(author);
+        System.out.println(author);
+
     }
 }
