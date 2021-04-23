@@ -22,7 +22,7 @@ public class AuthorFactoryTest {
         Author author = AuthorFactory.buildAuthor("Arendse", "Jaanties");
         assertNotNull(author);
         System.out.println(author);
-        System.out.println("working");
+        //System.out.println("working");
 
     }
 }
