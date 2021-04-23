@@ -1,6 +1,7 @@
 package com.caniksea.adp3.practical.booklib.authormodule.factory.generic;
 
 import com.caniksea.adp3.practical.booklib.authormodule.domain.generic.Author;
+import com.caniksea.adp3.practical.booklib.authormodule.helper.GenericHelper;
 
 import java.util.UUID;
 
@@ -19,11 +20,9 @@ public class AuthorFactory {
      * @return
      */
     public static Author buildAuthor(String firstName, String lastName) { // DO NOT MODIFY THIS LINE
-        if ((lastName == null || lastName.isEmpty()))
-            return null;
-        String id = UUID.randomUUID().toString();
-        Author author = new Author.Builder().firstName(firstName)
-                .lastName(lastName).id(id).build();
-        return author;
+        if (GenericHelper.isNullorEmpty(firstName) || GenericHelper.isNullorEmpty(lastName))
+            return new Author.Builder().build();
+        String id = GenericHelper.generateId();
+        return new Author.Builder().firstName(firstName).lastName(lastName).id(id).build();
     }
 }

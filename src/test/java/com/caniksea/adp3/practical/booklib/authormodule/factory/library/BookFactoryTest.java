@@ -1,5 +1,6 @@
 package com.caniksea.adp3.practical.booklib.authormodule.factory.library;
 
+import com.caniksea.adp3.practical.booklib.authormodule.domain.library.Book;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -19,6 +20,8 @@ public class BookFactoryTest {
      */
     @Test
     public void buildBook() {
-        throw new UnsupportedOperationException();
+        Book book = BookFactory.buildBook("Physics for Nerds", 2020);
+        assertNotNull(book);
+        System.out.println(book);
     }
 }

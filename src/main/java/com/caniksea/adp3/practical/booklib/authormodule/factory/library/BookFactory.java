@@ -1,6 +1,10 @@
 package com.caniksea.adp3.practical.booklib.authormodule.factory.library;
 
 import com.caniksea.adp3.practical.booklib.authormodule.domain.library.Book;
+import com.caniksea.adp3.practical.booklib.authormodule.helper.GenericHelper;
+
+import java.time.LocalDate;
+import java.util.UUID;
 
 public class BookFactory {
 
@@ -19,6 +23,11 @@ public class BookFactory {
      * @return
      */
     public static Book buildBook(String title, int year) { // DO NOT MODIFY THIS LINE.
-        throw new UnsupportedOperationException();
+        if (GenericHelper.isNullorEmpty(title))
+            return new Book.Builder().build();
+        int currentYear = LocalDate.now().getYear();
+        if (year < 1900 || year > currentYear) return new Book.Builder().build();
+        String id = GenericHelper.generateId();
+        return new Book.Builder().id(id).title(title).year(year).build();
     }
 }
