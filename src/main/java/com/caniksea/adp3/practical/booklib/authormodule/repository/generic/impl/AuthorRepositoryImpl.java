@@ -3,6 +3,9 @@ package com.caniksea.adp3.practical.booklib.authormodule.repository.generic.impl
 import com.caniksea.adp3.practical.booklib.authormodule.domain.generic.Author;
 import com.caniksea.adp3.practical.booklib.authormodule.repository.generic.AuthorRepository;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Instructions
  *  > Make sure you have read the instructions on IRepository.java before attempting the tasks below.
@@ -19,23 +22,53 @@ import com.caniksea.adp3.practical.booklib.authormodule.repository.generic.Autho
  */
 public class AuthorRepositoryImpl implements AuthorRepository {
 
+    private Set<Author> authors;
+    private static AuthorRepository repository = null;
+
+    public AuthorRepositoryImpl() {
+        this.authors = new HashSet<>();
+    }
+
+    public static AuthorRepository getRepository() {
+        if (repository == null) repository = new AuthorRepositoryImpl();
+        return repository;
+    }
+
     @Override
     public Author create(Author author) {
-        throw new UnsupportedOperationException();
+        this.authors.add(author);
+        return  author;
     }
 
     @Override
     public Author update(Author author) {
-        throw new UnsupportedOperationException();
+        Author read = read(author.getId());
+        if (read != null) {
+            this.authors.remove(read);
+            this.authors.add(author);
+            return author;
+        }
+        return null;
     }
 
     @Override
     public Author read(String s) {
-        throw new UnsupportedOperationException();
+        //using functional for loop
+        //return this.authors.stream().filter(author -> author.getId().equalsIgnoreCase(id)).findAny().orElseGet(null);
+        for (Author author : this.authors) {
+            if (author.getId().equalsIgnoreCase(author.getId())) return author;
+        }
+        return null;
     }
 
     @Override
     public void delete(String s) {
-        throw new UnsupportedOperationException();
+        Author author = read(s);
+        if (author != null) this.authors.remove(author);
+    }
+
+    @Override
+    public Set<Author> getall() {
+        return this.authors;
     }
 }
