@@ -1,6 +1,11 @@
 package com.caniksea.adp3.practical.booklib.authormodule.repository.generic.impl;
 
+import com.caniksea.adp3.practical.booklib.authormodule.domain.generic.Author;
+import com.caniksea.adp3.practical.booklib.authormodule.factory.generic.AuthorFactory;
+import com.caniksea.adp3.practical.booklib.authormodule.repository.generic.AuthorRepository;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.*;
 
@@ -19,25 +24,32 @@ import static org.junit.Assert.*;
  *  > Ensure your tests run in a right order (Hint: method name ascending). (0.125 marks)
  *
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AuthorRepositoryImplTest {
 
+    private Author author = AuthorFactory.buildAuthor("Paul", "Jideani");
+
     @Test
-    public void create() {
+    public void a_create() {
         throw new UnsupportedOperationException();
     }
 
     @Test
-    public void update() {
+    public void c_update() {
         throw new UnsupportedOperationException();
     }
 
     @Test
-    public void read() {
+    public void b_read() {
         throw new UnsupportedOperationException();
     }
 
     @Test
-    public void delete() {
+    public void e_delete() {
         throw new UnsupportedOperationException();
+    }
+
+    @Test
+    public void d_getall() {
     }
 }
