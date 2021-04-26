@@ -1,7 +1,11 @@
 package com.caniksea.adp3.practical.booklib.authormodule.service.library.impl;
 
 import com.caniksea.adp3.practical.booklib.authormodule.domain.library.BookAuthor;
+import com.caniksea.adp3.practical.booklib.authormodule.repository.library.BookAuthorRepository;
+import com.caniksea.adp3.practical.booklib.authormodule.repository.library.BookRepository;
 import com.caniksea.adp3.practical.booklib.authormodule.service.library.BookAuthorService;
+
+import java.util.Set;
 
 /**
  * Instructions
@@ -25,18 +29,44 @@ import com.caniksea.adp3.practical.booklib.authormodule.service.library.BookAuth
  */
 public class BookAuthorServiceImpl implements BookAuthorService {
 
+    private BookAuthorRepository repository;
+    private static BookAuthorService service = null;
+
+    private static BookAuthorService getService() {
+        if (service == null) service = new BookAuthorServiceImpl();
+        return service;
+    }
+
     @Override
     public BookAuthor create(BookAuthor bookAuthor) {
-        throw new UnsupportedOperationException();
+        return this.repository.create(bookAuthor);
     }
 
     @Override
     public BookAuthor read(String bookId, String authorId) {
-        throw new UnsupportedOperationException();
+        return this.repository.read(bookId, authorId);
     }
 
     @Override
     public void delete(String bookId, String authorId) {
-        throw new UnsupportedOperationException();
+        this.repository.delete(bookId, authorId);
+    }
+
+    @Override
+    public Set<BookAuthor> getall() { return this.repository.getall(); }
+
+    @Override
+    public Set<BookAuthor> getBookAuthorsForAuthor(String authorId) {
+        return this.repository.getBookAuthorsForAuthor(authorId);
+    }
+
+    @Override
+    public Set<BookAuthor> getBookAuthorsForBook(String bookId) {
+        return this.repository.getBookAuthorsForBook(bookId);
+    }
+
+    @Override
+    public void deleteForBook(String bookId) {
+        this.repository.deleteForBook(bookId);
     }
 }

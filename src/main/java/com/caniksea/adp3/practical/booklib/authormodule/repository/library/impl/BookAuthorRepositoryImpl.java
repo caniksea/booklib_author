@@ -1,7 +1,14 @@
 package com.caniksea.adp3.practical.booklib.authormodule.repository.library.impl;
 
+import com.caniksea.adp3.practical.booklib.authormodule.domain.library.Book;
 import com.caniksea.adp3.practical.booklib.authormodule.domain.library.BookAuthor;
+import com.caniksea.adp3.practical.booklib.authormodule.repository.IRepository;
 import com.caniksea.adp3.practical.booklib.authormodule.repository.library.BookAuthorRepository;
+import com.sun.org.apache.bcel.internal.generic.ARETURN;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Instructions
@@ -25,18 +32,56 @@ import com.caniksea.adp3.practical.booklib.authormodule.repository.library.BookA
  */
 public class BookAuthorRepositoryImpl implements BookAuthorRepository {
 
+    private Set<BookAuthor> bookAuthors;
+    private static BookAuthorRepository repository = null;
+
+    private BookAuthorRepositoryImpl() { this.bookAuthors = new HashSet<>(); }
+
+    public static BookAuthorRepository getRepository() {
+        if (repository ==null) repository = new BookAuthorRepositoryImpl();
+            return repository;
+    }
+
     @Override
     public BookAuthor create(BookAuthor bookAuthor) {
-        throw new UnsupportedOperationException();
+        this.bookAuthors.add(bookAuthor);
+        return bookAuthor;
     }
 
     @Override
     public BookAuthor read(String bookId, String authorId) {
-        throw new UnsupportedOperationException();
+        return this.bookAuthors.stream()
+                .filter(bookAuthor -> bookAuthor.getAuthorId().trim().equalsIgnoreCase(authorId.trim()))
+                .filter(bookAuthor -> bookAuthor.getBookId().trim().equalsIgnoreCase(bookId.trim()))
+                .findAny().orElse(null);
     }
 
     @Override
     public void delete(String bookId, String authorId) {
-        throw new UnsupportedOperationException();
+        BookAuthor bookAuthor = read(bookId, authorId);
+        if (bookAuthor != null) this.bookAuthors.remove(bookAuthor);
+    }
+
+    @Override
+    public Set<BookAuthor> getall() { return this.bookAuthors; }
+
+    @Override
+    public Set<BookAuthor> getBookAuthorsForAuthor(String authorId) {
+        return this.bookAuthors.stream()
+                .filter(bookAuthor -> bookAuthor.getAuthorId().trim().equalsIgnoreCase(authorId.trim()))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<BookAuthor> getBookAuthorsForBook(String bookId) {
+        return this.bookAuthors.stream()
+                .filter(bookAuthor -> bookAuthor.getBookId().trim().equalsIgnoreCase(bookId.trim()))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public void deleteForBook(String bookId) {
+        Set<BookAuthor> bookAuthors = getBookAuthorsForBook(bookId);
+        if (!bookAuthors.isEmpty()) this.bookAuthors.removeAll(bookAuthors);
     }
 }

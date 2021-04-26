@@ -1,6 +1,15 @@
 package com.caniksea.adp3.practical.booklib.authormodule.service.generic.impl;
 
+import com.caniksea.adp3.practical.booklib.authormodule.domain.generic.Author;
+import com.caniksea.adp3.practical.booklib.authormodule.factory.generic.AuthorFactory;
+import com.caniksea.adp3.practical.booklib.authormodule.repository.generic.impl.AuthorRepositoryImpl;
+import com.caniksea.adp3.practical.booklib.authormodule.service.generic.AuthorService;
+import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -19,25 +28,49 @@ import static org.junit.Assert.*;
  *  > Ensure your tests run in a right order (Hint: method name ascending). (0.125 marks)
  *
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AuthorServiceImplTest {
 
-    @Test
-    public void create() {
-        throw new UnsupportedOperationException();
+    private static Author author = AuthorFactory.buildAuthor("Paul", "Jideani");
+    private AuthorService service = AuthorServiceImpl.getService();
+
+    @Before
+    public void setUp() {
+        System.out.println("Author: " + author);
+
     }
 
     @Test
-    public void update() {
-        throw new UnsupportedOperationException();
+    public void a_create() {
+        Author inserted = service.create(author);
+        assertEquals(inserted.getId(), author.getId());
+        System.out.println("Inserted: " + inserted);
     }
 
     @Test
-    public void read() {
-        throw new UnsupportedOperationException();
+    public void c_update() {
+        Author updated = new Author.Builder().copy(author).lastName("Caleb").build();
+        updated = service.update(updated);
+        assertEquals(updated.getId(), author.getId());
+        System.out.println("Updated: " + updated);
     }
 
     @Test
-    public void delete() {
-        throw new UnsupportedOperationException();
+    public void b_read() {
+        Author read = service.read(author.getId());
+        assertNotNull(read);
+        System.out.println("Read: " + read);
+    }
+
+    @Test
+    public void e_delete() {
+        service.delete(author.getId());
+    }
+
+    @Test
+    public void d_getall() {
+        Set<Author> authors = service.getall();
+        assertEquals(1, authors.size());
+        System.out.println("Authors: " + authors);
     }
 }
