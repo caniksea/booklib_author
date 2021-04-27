@@ -3,9 +3,12 @@ package com.caniksea.adp3.practical.booklib.authormodule.repository.generic.impl
 import com.caniksea.adp3.practical.booklib.authormodule.domain.generic.Author;
 import com.caniksea.adp3.practical.booklib.authormodule.factory.generic.AuthorFactory;
 import com.caniksea.adp3.practical.booklib.authormodule.repository.generic.AuthorRepository;
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -27,29 +30,46 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AuthorRepositoryImplTest {
 
-    private Author author = AuthorFactory.buildAuthor("Paul", "Jideani");
+    private static Author author = AuthorFactory.buildAuthor("Paul", "Jideani");
+    private AuthorRepository repository = AuthorRepositoryImpl.getRepository();
+
+    @Before
+    public void setUp() {
+        System.out.println("Author: " + author);
+
+    }
 
     @Test
     public void a_create() {
-        throw new UnsupportedOperationException();
+        Author inserted = repository.create(author);
+        assertEquals(inserted.getId(), author.getId());
+        System.out.println("Inserted: " + inserted);
     }
 
     @Test
     public void c_update() {
-        throw new UnsupportedOperationException();
+        Author updated = new Author.Builder().copy(author).lastName("Caleb").build();
+        updated = repository.update(updated);
+        assertEquals(updated.getId(), author.getId());
+        System.out.println("Updated: " + updated);
     }
 
     @Test
     public void b_read() {
-        throw new UnsupportedOperationException();
+        Author read = repository.read(author.getId());
+        assertNotNull(read);
+        System.out.println("Read: " + read);
     }
 
     @Test
     public void e_delete() {
-        throw new UnsupportedOperationException();
+        repository.delete(author.getId());
     }
 
     @Test
     public void d_getall() {
+        Set<Author> authors = repository.getall();
+        assertEquals(1, authors.size());
+        System.out.println("Authors: " + authors);
     }
 }
