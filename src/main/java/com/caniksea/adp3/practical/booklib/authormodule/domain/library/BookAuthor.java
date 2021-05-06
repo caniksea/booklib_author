@@ -28,7 +28,7 @@ public class BookAuthor {
     public static class Builder {
         private String bookId, authorId;
 
-        public Builder BookId(String bookId) {
+        public Builder bookId(String bookId) {
             this.bookId = bookId;
             return this;
         }

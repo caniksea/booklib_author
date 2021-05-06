@@ -3,6 +3,7 @@ package com.caniksea.adp3.practical.booklib.authormodule.service.library.impl;
 import com.caniksea.adp3.practical.booklib.authormodule.domain.library.BookAuthor;
 import com.caniksea.adp3.practical.booklib.authormodule.repository.library.BookAuthorRepository;
 import com.caniksea.adp3.practical.booklib.authormodule.repository.library.BookRepository;
+import com.caniksea.adp3.practical.booklib.authormodule.repository.library.impl.BookAuthorRepositoryImpl;
 import com.caniksea.adp3.practical.booklib.authormodule.service.library.BookAuthorService;
 
 import java.util.Set;
@@ -32,7 +33,9 @@ public class BookAuthorServiceImpl implements BookAuthorService {
     private BookAuthorRepository repository;
     private static BookAuthorService service = null;
 
-    private static BookAuthorService getService() {
+    private BookAuthorServiceImpl() {this.repository = BookAuthorRepositoryImpl.getRepository();  }
+
+    public static BookAuthorService getService() {
         if (service == null) service = new BookAuthorServiceImpl();
         return service;
     }
@@ -43,9 +46,7 @@ public class BookAuthorServiceImpl implements BookAuthorService {
     }
 
     @Override
-    public BookAuthor read(String bookId, String authorId) {
-        return this.repository.read(bookId, authorId);
-    }
+    public BookAuthor read(String bookId, String authorId) { return this.repository.read(bookId, authorId); }
 
     @Override
     public void delete(String bookId, String authorId) {
@@ -53,7 +54,9 @@ public class BookAuthorServiceImpl implements BookAuthorService {
     }
 
     @Override
-    public Set<BookAuthor> getall() { return this.repository.getall(); }
+    public Set<BookAuthor> getall() {
+        return this.repository.getall();
+    }
 
     @Override
     public Set<BookAuthor> getBookAuthorsForAuthor(String authorId) {
@@ -68,5 +71,6 @@ public class BookAuthorServiceImpl implements BookAuthorService {
     @Override
     public void deleteForBook(String bookId) {
         this.repository.deleteForBook(bookId);
+
     }
 }

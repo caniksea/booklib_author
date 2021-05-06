@@ -27,7 +27,6 @@ public class BookRepositoryImpl implements BookRepository {
 
     private BookRepositoryImpl() {this.books = new HashSet<>(); }
 
-
     public static BookRepository getRepository() {
         if (repository == null) repository = new BookRepositoryImpl();
         return repository;

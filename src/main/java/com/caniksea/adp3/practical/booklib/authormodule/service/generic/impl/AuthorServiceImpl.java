@@ -65,7 +65,7 @@ public class AuthorServiceImpl implements AuthorService {
     public Set<Author> getAuthorsWithLastName(String lastName) {
         Set<Author> authors = getall();
         Set<Author> result = new HashSet<>();
-        for(Author author: authors) {
+        for(Author author : authors) {
             if (author.getLastName().equalsIgnoreCase(lastName)) {
                 result.add(author);
             }
