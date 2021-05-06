@@ -35,11 +35,11 @@ public class BookAuthorRepositoryImpl implements BookAuthorRepository {
     private Set<BookAuthor> bookAuthors;
     private static BookAuthorRepository repository = null;
 
-    private BookAuthorRepositoryImpl() { this.bookAuthors = new HashSet<>(); }
+    private BookAuthorRepositoryImpl() {this.bookAuthors = new HashSet<>(); }
 
     public static BookAuthorRepository getRepository() {
-        if (repository ==null) repository = new BookAuthorRepositoryImpl();
-            return repository;
+        if (repository == null) repository = new BookAuthorRepositoryImpl();
+        return repository;
     }
 
     @Override
@@ -60,10 +60,13 @@ public class BookAuthorRepositoryImpl implements BookAuthorRepository {
     public void delete(String bookId, String authorId) {
         BookAuthor bookAuthor = read(bookId, authorId);
         if (bookAuthor != null) this.bookAuthors.remove(bookAuthor);
+
     }
 
     @Override
-    public Set<BookAuthor> getall() { return this.bookAuthors; }
+    public Set<BookAuthor> getall() {
+        return this.bookAuthors;
+    }
 
     @Override
     public Set<BookAuthor> getBookAuthorsForAuthor(String authorId) {

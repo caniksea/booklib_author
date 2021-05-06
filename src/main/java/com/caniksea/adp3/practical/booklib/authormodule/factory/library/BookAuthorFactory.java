@@ -17,6 +17,9 @@ public class BookAuthorFactory {
      * @return
      */
     public static BookAuthor buildBookAuthor(String bookId, String authorId) { // DO NOT MODIFY THIS LINE.
-        throw new UnsupportedOperationException();
+        return new BookAuthor.Builder()
+                .bookId(bookId)
+                .authorId(authorId)
+                .build();
     }
 }

@@ -1,6 +1,15 @@
 package com.caniksea.adp3.practical.booklib.authormodule.controller;
 
+import com.caniksea.adp3.practical.booklib.authormodule.domain.generic.Author;
+import com.caniksea.adp3.practical.booklib.authormodule.domain.library.BookAuthor;
+import com.caniksea.adp3.practical.booklib.authormodule.service.generic.AuthorService;
+import com.caniksea.adp3.practical.booklib.authormodule.service.generic.impl.AuthorServiceImpl;
+import com.caniksea.adp3.practical.booklib.authormodule.service.library.BookAuthorService;
+import com.caniksea.adp3.practical.booklib.authormodule.service.library.impl.BookAuthorServiceImpl;
+
+
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -20,7 +29,16 @@ public class Playground {
      * @return
      */
     Set<String> getBookAuthorsLastName(String bookId) {
-        throw new UnsupportedOperationException();
+        BookAuthorService bookAuthorService = BookAuthorServiceImpl.getService();
+        AuthorService authorService = AuthorServiceImpl.getService();
+        Set<BookAuthor> bookAuthors = bookAuthorService.getBookAuthorsForBook(bookId);
+        Set<String> lastnames = new HashSet<>();
+
+        for (BookAuthor bookAuthor : bookAuthors) {
+            Author author = authorService.read(bookAuthor.getAuthorId());
+            if(author != null) lastnames.add(author.getLastName());
+        }
+        return lastnames;
     }
 
     /**
